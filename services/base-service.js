@@ -7,12 +7,12 @@ module.exports = class Service{
         return this.model.findById(itemId)
     }
 
-    async add({item}){
+    async add(item){
         return this.model.create(item)
     }
 
-    async update(item,id){
-        return this.model.findByIdAndUpdate(id,item,{new:True})
+    async update(id,item){
+        return this.model.findByIdAndUpdate(id,item,{new:true})
     }
 
     async delete(itemId){
