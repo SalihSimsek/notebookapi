@@ -9,8 +9,14 @@ const BookSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    isFavorite: Boolean,
-    isRead: Boolean,
+    isFavorite: {
+        type: Boolean,
+        default: false
+    },
+    isRead: {
+        type: Boolean,
+        default: false
+    },
     category: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Category',

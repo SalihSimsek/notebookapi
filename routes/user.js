@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const UserService = require('../services/user-service')
-const { registerValidation,loginValidation } = require('../validation')
+const { registerValidation,loginValidation } = require('../controller/auth-validation')
 
 const auth = require('../services/auth-token-service')
 
