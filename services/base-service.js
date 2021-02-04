@@ -1,10 +1,10 @@
 module.exports = class Service{
-    async findAll(){
-        return this.model.find()
+    async findAll(id){
+        return this.model.find({creator:id})
     }
 
-    async find(itemId){
-        return this.model.findById(itemId)
+    async find(id,creator){
+        return this.model.findOne({_id:id,creator:creator})
     }
 
     async add(item){
@@ -15,7 +15,7 @@ module.exports = class Service{
         return this.model.findByIdAndUpdate(id,item,{new:true})
     }
 
-    async delete(itemId){
-        return this.model.deleteOne({_id:itemId})
+    async delete(id,creator){
+        return this.model.deleteOne({_id:id,creator:creator})
     }
 }

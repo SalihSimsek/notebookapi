@@ -1,9 +1,12 @@
-const Joi = require('Joi')
+const Joi = require('joi')
 
 const createValidation = (data)=>{
     const schema = Joi.object({
-        name: Joi.string().required(),
+        text: Joi.string().required(),
+        page: Joi.number().required(),
+        book: Joi.string().required()
     })
+
     return schema.validate(data)
 }
 

@@ -12,9 +12,6 @@ const AuthorSchema = mongoose.Schema({
     creator: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User',
-        autopopulate: {
-            maxDepth: 1
-        }
     },
     books: [{
         type: mongoose.SchemaTypes.ObjectId,
