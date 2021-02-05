@@ -8,16 +8,11 @@ const createValidation = require('../validations/author-validation')
 
 router.get('/all', auth, async (req, res) => {
     const authors = await AuthorService.findAll(req.user)
-
-    if (authors.length == 0) {
-        return res.status(404).send({ 'message': 'Author list empty' })
-    }
-
     res.status(200).send(authors)
 })
 
 router.get('/:id', auth, async (req, res) => {
-    const author = AuthorService.find(req.params.id, req.user)
+    const author = await AuthorService.find(req.params.id, req.user)
 
     if (!author) {
         return res.status(404).send({ 'message': 'Author not found' })
@@ -30,7 +25,7 @@ router.post('/', auth, async (req, res) => {
     //Validation before create
     const {error} = createValidation(req.body)
     if(error){
-        return res.status(400).send({'message':`${errror.details[0].message}`})
+        return res.status(400).send({'message':`${error.details[0].message}`})
     }
 
     const author = req.body

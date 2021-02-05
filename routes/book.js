@@ -10,18 +10,13 @@ const authorService = require('../services/author-service')
 
 router.get('/all', auth, async (req, res) => {
     const books = await BookService.findAll(req.user)
-
-    if (books.length == 0) {
-        return res.status(404).send({ 'message': 'Book list empty' })
-    }
-
     res.status(200).send(books)
 })
 
 router.get('/:id', auth, async (req, res) => {
     const book = await BookService.find(req.params.id, req.user)
     if (!book) {
-        res.status(404).send({ 'message': 'Book not found' })
+        return res.status(404).send({ 'message': 'Book not found' })
     }
     res.status(200).send(book)
 })
@@ -34,7 +29,8 @@ router.post('/', auth, async (req, res) => {
     }
 
     const book = req.body
-    book.creator = req.user
+    book.creator = req.user._id
+
 
     //Book created
     const createdBook = await BookService.add(book)

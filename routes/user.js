@@ -29,10 +29,6 @@ router.post('/register',async (req,res)=>{
         return res.status(400).send({'message':'Username already exist'})
     }
 
-    //Check password and c_password are same
-    if(req.body.password != req.body.c_password){
-        return res.status(400).send({'message':'Passwords not same'})
-    }
 
     //Hash password
     const salt = await bcrypt.genSalt(10)

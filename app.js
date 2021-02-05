@@ -19,10 +19,6 @@ app.use(cors())
 app.use(bodyParser.json())
 
 
-app.get('/',(req,res)=>{
-    res.send('Homepage')
-})
-
 app.use('/user',userRouter)
 app.use('/author',authorRouter)
 app.use('/book',bookRouter)
